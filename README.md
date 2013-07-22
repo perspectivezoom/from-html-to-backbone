@@ -54,8 +54,9 @@ We'll be backbone-ifying a simple website named Game Tracker. It consists of a t
 </html>
 ```
 
-You can view the page [here](http://www.example.com). 
-]### [Step 1: Adding a template)
+You can view the page [here](http://www.example.com). [code]() 
+
+### Step 1: Adding a template
 
 Before using Backbone, we first need to consider how to render templates. Unlike other javascript "frameworks", Backbone is template-agnostic; you get to choose how you want Backbone to render the resultant HTML. 
 
@@ -566,7 +567,7 @@ To live with this limitation, views need to be able to talk to each other. In th
 
 Let's define and use our Add Form View:
 
-```
+```diff
         }
       });
  
@@ -602,7 +603,7 @@ When we start our app, we give it the same collection that our gameTable view us
 
 Looking at the documentation, we see that whenever a model is added to a Backbone Collection, [an "add" event is fired](http://backbonejs.org/#Collection-add). We can bind to that event to re-render the collection. Let's add an [initialize function](http://backbonejs.org/#View-constructor) to our gameTable view to set up that binding whenever the view is created:
 
-```
+```diff
         events: {
           'click th': 'sort'
         },
@@ -628,7 +629,7 @@ The second is to rename the function from `sort` to `sortCollection`.
 
 The third is to move some of the sort logic from the view to the collection itself, by adding a sortByProperty function. If you think about it, that's where it really belonged in the first place.
 
-```
+```diff
       GameTracker.Collections.GameCollection = Backbone.Collection.extend({
 -       model: GameTracker.Models.Game
 +       model: GameTracker.Models.Game,
@@ -679,7 +680,7 @@ For our last step, we are going to use the [Backbone Router](http://backbonejs.o
 
 In the previous step, we used a common Backbone Collection as a bridge to communicate between two views. What if we didn't have that shared resource? In this step, we'll use an app-wide event aggregator that serves as an alternate means of app communication. [For historical reasons](http://lostechies.com/derickbailey/2011/07/19/references-routing-and-the-event-aggregator-coordinating-views-in-backbone-js/), this event bulletin board is called a vent. Let's add it in now:
 
-```
+```diff
       var GameTracker = { Models: {}, Collections: {}, Views: {} };
 +     GameTracker.vent = _.extend({}, Backbone.Events);
  
@@ -690,7 +691,7 @@ Yep, it's just one line of code. All we need is a named bare bones Backbone Even
 
 To use the vent, we'll tell our collection to listen for a `sortByProperty` event:
 
-```
+```diff
       GameTracker.Collections.GameCollection = Backbone.Collection.extend({
         model: GameTracker.Models.Game,
 +       initialize: function () {
@@ -708,7 +709,7 @@ Now that our collection is listening to the vent, its possible to sort the colle
 
 Time to add in the Backbone Router:
 
-```
+```diff
       GameTracker.Views.AddForm = Backbone.View.extend({
         events: {
           'click button': 'add'
@@ -755,7 +756,7 @@ With all this in place, it is now possible to open the page pre-sorted. If you'v
 
 Although in this step-by-step, we used only two inter-component communication strategies, please note that are more ways than just vents and shared resources. For example, Backbone Views that hold nested html, such as GameTable and GameTableRow, have a natural connection to each other, and although we never needed to do so, it would be perfectly reasonable in the near future for GameTable to keep a reference to its GameTableRows if it needs to directly talk to them. Something along the lines of GameTable creating a `this.gameViews` array and changing:
 
-```
+```diff
 -   var gameView = new GameTracker.Views.GameTableRow({ model: game });
 +   this.gameViews.push(new GameTracker.Views.GameTableRow({ model: game }));
 ```
