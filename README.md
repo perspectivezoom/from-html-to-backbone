@@ -183,7 +183,8 @@ We declare our Game "class" by [extending](http://underscorejs.org/#extend) the 
 
 To use our model, instead of taking each game object and passing it to the template directly, we pass the object to the  Backbone Game "class", and then pass the newly "instantiated" game into the template. In a Backbone Model, you retrieve stored data with the [get](http://backbonejs.org/#Model-get) function, so we'll have to modify our template accordingly.
 
-'''diff
+```diff
+    <script>
       var Game = Backbone.Model.extend({});
 -     var gameListing = _.template("<tr><td><%= name %></td><td><%= minutes %></td></tr>");
 +     var gameListing = _.template("<tr><td><%= get('name') %></td><td><%= get('minutes') %></td></tr>");
@@ -195,7 +196,8 @@ To use our model, instead of taking each game object and passing it to the templ
 +         $('tbody').append(gameListing(game));
         });
       });
-'''
+    </script>
+```
 
 Ok, we've added a Backbone Model. It seems a bit unnecessary, because it doesn't really do much at the moment. Truth be told, even at the end of this step-by-step, the model still won't do much, but hopefully, after Step 7, you'll see how it *could* be useful in a bigger app.
 
