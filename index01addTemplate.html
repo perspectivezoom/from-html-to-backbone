@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <link href="styles.css" rel="stylesheet" type="text/css" media="all">
+    <script src='vendor/jquery.js'></script>
+    <script src='vendor/underscore.js'></script>
+    <script>
+      var games = [
+        { name: 'Super Mario World', minutes: 290 },
+        { name: 'Donkey Kong Country', minutes: 140 },
+        { name: 'Mega Man X', minutes: 60 }
+      ];
+
+      var gameListing = _.template("<tr><td><%= name %></td><td><%= minutes %></td></tr>");
+
+      $(document).ready(function () {
+        _.each(games, function (gameData) {
+          $('tbody').append(gameListing(gameData));
+        });
+      });
+    </script>
+  </head>
+  <body>
+    <div class='header'>Game Tracker</div>
+    <table class='content'>
+      <thead>
+        <tr>
+          <th>Name</th>
+          <th>Minutes Played</th>
+        </tr>
+      </thead>
+      <tbody>
+      </tbody>
+    </table>
+  </body>
+</html>

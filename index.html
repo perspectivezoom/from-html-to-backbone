@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <link href="styles.css" rel="stylesheet" type="text/css" media="all">
+    <script src='vendor/jquery.js'></script>
+    <script src='vendor/underscore.js'></script>
+    <script src='vendor/backbone.js'></script>
+    <script>
+      var games = [
+        {
+          name: 'Super Mario World',
+          minutes: 290
+        },
+        {
+          name: 'Donkey Kong Country',
+          minutes: 140
+        },
+        {
+          name: 'Mega Man X',
+          minutes: 60
+        },
+        {
+          name: 'The Legend of Zelda: A Link to the Past',
+          minutes: 240
+        }
+      ];
+
+      $(document).ready(function () {
+        var GameTracker = {};
+
+        // MODELS
+        GameTracker.Game = Backbone.Model.extend({
+          formattedMinutes: function () {
+            var minutes = this.get('minutes');
+            return parseInt(minutes / 60) + ' hours ' + minutes % 60 + ' minutes';
+          }
+        });
+
+        // COLLECTIONS
+        GameTracker.GameCollection = Backbone.Collection.extend({
+          model: GameTracker.Game
+        });
+
+        // VIEWS
+        GameTracker.GameTableRowView = Backbone.View.extend({
+          tagName: 'tr',
+          template: _.template("<td><%= get('name') %></td><td><%= formattedMinutes() %></td>"),
+          render: function () {
+            this.$el.html(this.template(this.model));
+          }
+        });
+
+        GameTracker.GameTableView = Backbone.View.extend({
+          tagName: 'table',
+          template: _.template("<thead><tr><th data-sort='name'>Name</th><th data-sort='minutes'>Minutes Played</th></tr></thead><tbody></tbody>"),
+
+          events: {
+            'click th': 'sortByHeader'
+          },
+
+          initialize: function () {
+            _.bindAll(this, 'render', 'sort');
+            vent.on('sort', this.sort)
+            this.collection.on('change', this.render);
+            this.collection.on('sort', this.render);
+          },
+
+          render: function () {
+            this.$el.html(this.template());
+            that = this;
+            this.collection.each(function (game) {
+              var gameView = new GameTracker.GameTableRowView({ model: game });
+              gameView.render();
+              that.$('tbody').append(gameView.$el);
+            })
+          },
+          sortByHeader: function (event) {
+            this.sort($(event.currentTarget).data('sort'));
+          },
+          
+          sort: function (sortColumn) {
+            this.collection.comparator = function (game) { return game.get(sortColumn) };
+            this.collection.sort();
+          }
+        });
+
+        GameTracker.GameFormView = Backbone.View.extend({
+          events: {
+            'click button': 'add'
+          },
+
+          initialize: function () {
+            _.bindAll(this, 'add')
+          },
+
+          render: function () {
+            this.$el.html("<div><label>Name</label><input class='name'></input></div><div<label>Minutes</label><input class='minutes'></input></div><br /><button>Add</button>");
+            return this;
+          },
+
+          add: function () {
+            var name = this.$('input.name').val();
+            var minutes = this.$('input.minutes').val();
+            this.collection.add(new GameTracker.Game({ name: name, minutes: minutes }));
+
+          }
+        });
+
+        GameTracker.Router = Backbone.Router.extend({
+          routes: {
+            'sort/:sortColumn' : 'sort'
+          },
+          sort: function (sortColumn) {
+            vent.trigger('sort', sortColumn);
+            topLevelView.remove()
+            new App[sortColumn]
+          }
+        });
+
+
+
+        // START APP
+        var vent = _.extend({}, Backbone.Events);
+        var gameCollection = new GameTracker.GameCollection;
+        gameCollection.add(games);
+        var gameTableView = new GameTracker.GameTableView( { collection: gameCollection });
+        gameTableView.render();
+        $('.content').html(gameTableView.$el);
+
+        var gameFormView = new GameTracker.GameFormView( {collection: gameCollection });
+        $('.form').html(gameFormView.render().$el);
+
+        new GameTracker.Router();
+        Backbone.history.start();
+      });
+    </script>
+  </head>
+  <body>
+    <div class='header'>Game Tracker</div>
+    <div class='form'></div>
+    <div class='content'></div>
+  </body>
+</html>

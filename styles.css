@@ -1,0 +1,19 @@
+@charset 'UTF-8';
+
+.header, .form, .content th, .content td {
+  font-family: arial;
+  text-align: left;
+  margin-bottom: 5px;
+  padding: 10px;
+  max-width: 450px;
+}
+
+.header {
+  font-size: 30px;
+  font-weight: bold;
+  padding: 10px 0px;
+}
+
+.form, .content th, .content tr:nth-child(even) {
+  background-color: #CCCCCC;
+}

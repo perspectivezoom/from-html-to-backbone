@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <link href="styles.css" rel="stylesheet" type="text/css" media="all">
+    <script src='vendor/jquery.js'></script>
+    <script src='vendor/underscore.js'></script>
+    <script src='vendor/backbone.js'></script>
+    <script>
+      var games = [
+        { name: 'Super Mario World', minutes: 290 },
+        { name: 'Donkey Kong Country', minutes: 140 },
+        { name: 'Mega Man X', minutes: 60 }
+      ];
+
+      var Game = Backbone.Model.extend({});
+      var GameView = Backbone.View.extend({
+        tagName: 'tr',
+        template: _.template("<td><%= get('name') %></td><td><%= get('minutes') %></td>"),
+        render: function () {
+          this.$el.html(this.template(this.model));
+          return this;
+        }
+      });
+
+      $(document).ready(function () {
+        _.each(games, function (gameData) {
+          var game = new Game(gameData);
+          var gameView = new GameView({ model: game });
+          $('tbody').append(gameView.render().el);
+        });
+      });
+    </script>
+  </head>
+  <body>
+    <div class='header'>Game Tracker</div>
+    <table class='content'>
+      <thead>
+        <tr>
+          <th>Name</th>
+          <th>Minutes Played</th>
+        </tr>
+      </thead>
+      <tbody>
+      </tbody>
+    </table>
+  </body>
+</html>

@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <link href="styles.css" rel="stylesheet" type="text/css" media="all">
+    <script src='vendor/jquery.js'></script>
+    <script src='vendor/underscore.js'></script>
+    <script src='vendor/backbone.js'></script>
+    <script>
+      var games = [
+        { name: 'Super Mario World', minutes: 290 },
+        { name: 'Donkey Kong Country', minutes: 140 },
+        { name: 'Mega Man X', minutes: 60 }
+      ];
+
+      var GameTracker = { Models: {}, Collections: {}, Views: {} };
+
+      // MODELS
+      GameTracker.Models.Game = Backbone.Model.extend({});
+
+      // COLLECTIONS
+      GameTracker.Collections.GameCollection = Backbone.Collection.extend({
+        model: GameTracker.Models.Game
+      });
+
+      // VIEWS
+      GameTracker.Views.GameTableRow = Backbone.View.extend({
+        tagName: 'tr',
+        template: _.template("<td><%= get('name') %></td><td><%= get('minutes') %></td>"),
+        render: function () {
+          this.$el.html(this.template(this.model));
+          return this;
+        }
+      });
+
+      GameTracker.Views.GameTable = Backbone.View.extend({
+        tagName: 'table',
+        template: _.template('<thead><tr><th>Name</th><th>Minutes Played</th></tr></thead><tbody></tbody>'),
+        render: function () {
+          this.$el.html(this.template());
+          this.collection.each(function (game) {
+            var gameView = new GameTracker.Views.GameTableRow({ model: game });
+            this.$('tbody').append(gameView.render().el);
+          }, this);
+          return this;
+        }
+      });
+
+      // START APP
+      $(document).ready(function () {
+        var gameCollection = new GameTracker.Collections.GameCollection();
+        gameCollection.add(games);
+        var gameTable = new GameTracker.Views.GameTable({ collection: gameCollection });
+        $('.content').html(gameTable.render().el);
+      });
+    </script>
+  </head>
+  <body>
+    <div class='header'>Game Tracker</div>
+    <div class='content'></div>
+  </body>
+</html>
