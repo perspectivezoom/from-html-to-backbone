@@ -8,7 +8,7 @@ As the name suggests, it is inspired by kjbekkelund's excellent [Step by step fr
 * Just started using jQuery to manipulate a web page
 * Kind of know what a Javascript framework is, but not really
 
-If you have a strong programming background, and can understand [jQuery to Backbone's](https://github.com/kjbekkelund/writings/blob/master/published/understanding-backbone.md) opening setup and central thesis of separation of concerns, then the following material is likely to simple for you.
+If you have a strong programming background, and can understand [jQuery to Backbone's](https://github.com/kjbekkelund/writings/blob/master/published/understanding-backbone.md) opening setup and central thesis of separation of concerns, then the following material is likely too simple for you.
 
 In this step by step, parts of Backbone are integrated one at a time and explained in detail. The goal is to eliminate the mysticism behind using Backbone, and for you to understand how everything works. Though not really framework itself (the most appropriate definition I've heard is a "framework framework"), understanding Backbone will give you a much firmer grasp of the more magical frameworks you might encounter.
 
@@ -58,7 +58,7 @@ You can view the page [here](http://perspectivezoom.com/from-jquery-to-backbone/
 
 ### Step 1: Adding a template
 
-Before using Backbone, we first need to consider how to render templates. Unlike other javascript "frameworks", Backbone is template-agnostic; you get to choose how you want Backbone to render the resultant HTML. 
+Before using Backbone, we first need to consider how to render templates. Backbone is template-agnostic; you get to choose how you want Backbone to render the resultant HTML. 
 
 In a real app, you'll likely want something more powerful, but for our purposes Underscore.js' [built-in templating system](http://underscorejs.org/#template) is sufficient and (more importantly) also relatively simple to understand.
 
@@ -89,7 +89,7 @@ Next, as we'll be using our template to generate our table, we delete the rows f
 -       <tr>
 -         <td>Super Mario World</td>
 -	      <td>290</td>
--       </tr>      
+-       </tr>
 -       <tr>
 -         <td>Donkey Kong Country</td>
 -         <td>140</td>
@@ -136,7 +136,6 @@ We create an Underscore template that, when given a game, will generate the HTML
 Finally (after jQuery's `(document).ready` tells us that the page has fully loaded) we take each game, generate a table row using our template, and insert it into the table.
 
 ```diff
-    <script>
       var games = [
         { name: 'Super Mario World', minutes: 290 },
         { name: 'Donkey Kong Country', minutes: 140 },
@@ -150,7 +149,6 @@ Finally (after jQuery's `(document).ready` tells us that the page has fully load
 +         $('tbody').append(gameListing(gameData));
 +       });
 +     });
-    </script>
 ```
 
 Ok, this step is done. If you load it in a browser, you'll see nothing different, but we know that different stuff is happening in the background.
@@ -205,7 +203,7 @@ Ok, we've added a Backbone Model. It seems a bit unnecessary, because it doesn't
 
 ### Step 3: Adding a Backbone View
 
-Unlike Backbone Models, we're going to be doing quite a lot with a [Backbone View](http://backbonejs.org/#View). Let's first add in the "class definition"" for our view, and then figure out what each line does.
+Unlike Backbone Models, we're going to be doing quite a lot with a [Backbone View](http://backbonejs.org/#View). Let's first add in the "class definition" for our view, and then figure out what each line does.
 
 ```diff
       var Game = Backbone.Model.extend({});
@@ -222,9 +220,9 @@ Unlike Backbone Models, we're going to be doing quite a lot with a [Backbone Vie
       $(document).ready(function () {
 ```
 
-The first thing to notice is that the Underscore template moved from its own variable to the "template" property of the View. Strictly speaking, this wasn't necessary; our render function could have just as easily been `this.$el.html(gameListing(this.model));` instead of `this.$el.html(this.template(this.model));`, but Backbone Views provide us with the convention of storing the View's template in the template property. More importantly, it makes sense to store it there; the template doesn't really belong floating out in the open.
+The first thing to notice is that the Underscore template moved from its own variable to the `template` property of the View. Strictly speaking, this wasn't necessary; our render function could have just as easily been `this.$el.html(gameListing(this.model));` instead of `this.$el.html(this.template(this.model));`, but Backbone Views provide us with the convention of storing the View's template in the template property. More importantly, it makes sense to store it there; the template doesn't really belong floating out in the open.
 
-Which brings us to the render function itself. As mentioned previously, Backbone lets you choose how to render HTML. In the standard Backbone.View, the render function is completely blank, forcing you to define it yourself. The sole job of this.render is to populate the View's `el` property, where the View stores its HTML. For reasons of convenience and [convention](http://backbonejs.org/#View-render), we define render to return the view after it has finished populating its el. This will allow us to employ method chaining later on in this step.
+Which brings us to the render function itself. As mentioned previously, Backbone lets you choose how to render HTML. In the standard Backbone.View, the `render` function is completely blank, forcing you to define it yourself. The sole job of this.render is to populate the View's `el` property, where the View stores its HTML. For reasons of convenience and [convention](http://backbonejs.org/#View-render), we define render to return the view after it has finished populating its el. This will allow us to employ method chaining later on in this step.
 
 By default, `el` is just an empty `<div></div>`. We want our View's `el` to be a HTML table row, so we use the tagName property to make its containing `el` a tr instead. Thus, when the View is newed up, before we call its render function, our View's `el` is just `<tr></tr>`. We also remove the `<tr></tr>` tags from the template. 
 
@@ -246,7 +244,7 @@ Previously, we took our template, fed in our Backbone Game Model, and took that 
 
 [The current version of the page](http://perspectivezoom.com/from-jquery-to-backbone/index03addView.html) - [code](https://github.com/perspectivezoom/from-jquery-to-backbone/blob/gh-pages/index03addView.html) 
 
-Once again, nothing visibly different at the moment, but we'll take full advantage of Backbone Views in the second half. To give you a little food for thought: we've effectively assigned ownership of portions of HTML. Each table row is its own newed up Backbone View, and that view is responsible for the elements inside of it. That single concept, of sections of HTML being owned by a responsible object, is the most unique and powerful new insight that has emerged from Backbone and similar libraries.
+Once again, nothing visibly different at the moment, but we'll take full advantage of Backbone Views in the second half. To give you a little food for thought: we've effectively assigned ownership of portions of HTML. Each table row is its own newed up Backbone View, and that view is responsible for the elements inside of it. That single concept, of sections of HTML being owned by a responsible object, is among the most powerful new insights that have emerged from Backbone and similar libraries.
 
 ### Step 4: Adding a Backbone Collection
 
@@ -298,7 +296,7 @@ So that's nice. We don't have to create a model only to stuff it into a collecti
 
 Though we've added in three of the core Backbone components, it isn't quite yet up to convention. There's still two steps to be done before we can consider call this page canonical. 
 
-The first is to add in a second view. We have a view for each table row, but we don't yet have one for the table itself. Although it is not strictly necessary at the moment, we'll see in Step 9 just how useful having a "Collection View" (to borrow a term from the Backbone-Marionette framework) can be.
+The first is to add in a second view. We have a view for each table row, but we don't yet have one for the table itself. Although it is not strictly necessary at the moment, we'll see in Step 9 just how useful having a "Collection View" (to borrow a term from the [Backbone-Marionette](https://github.com/marionettejs/backbone.marionette) framework) can be.
 
 In preparation for this second view, we rename the existing GameView to be a little bit more descriptive:
 
@@ -360,7 +358,7 @@ Ok, time to define the Table View:
 
 Structurally, GameTableView is identical to GameTableRowView, with both views having `tagName`, `template`, and `render` defined. Though GameTableView's `tagName` and `template` are fairly straightforward, `render` is slightly more complicated. `render` first populates the view's `el` with the table header and body via its static template. Then, it takes each Game model in its collection (which we have to pass in at runtime), makes a GameTableRowView for that Game, and then adds the GameTableRowView's rendered `el` to the end of GameTableView's table body.
 
-When we added the rendered `el` for the GameTableRowView, we use `this.$('tbody')`. As you might expect, `this.$('tbody')` is a convenience for `this.$el.find('tbody')` (which is itself short for `$(this.el).find('tbody')`). The second shorthand is the use of `this.collection.each`.
+When we added the rendered `el` for the GameTableRowView, we use `this.$('tbody')`. As you might expect, `this.$('tbody')` is a convenience for `this.$el.find('tbody')` (which is itself short for `$(this.el).find('tbody')`).
 
 This time, when using `this.collection.each`, we pass in a context object at the end. If we hadn't passed in `this` as the context for `this.collection.each(myIteratorFunction, context)`, the `this` inside the iteratorFunction would not be the correct `this`, and thus the line `this.$('tbody').append(gameView.render().el)` would not behave as intended. (For those that are still confused, add a `console.log(this);` right above `this.$('tbody').append…` line, and see what happens in the [console](http://stackoverflow.com/questions/4743730/what-is-console-log-and-how-do-i-use-it) when you switch between `}, this);` and `});`)
 
@@ -386,7 +384,7 @@ All our table building functionality is now localized into a place where it make
 
 ### Step 6: Adding a Namespace
 
-This is the last step of our "[green-green](http://www.example.com)", no added-functionality refactor. Time to pause for a second and get our ducks in a row before we move on. Let's talk a little about app organization.
+This is the last step of our [green-green](http://www.example.com), no added-functionality refactor. Time to pause for a second and get our ducks in a row before we move on. Let's talk a little about app organization.
 
 For pedagogical purposes, I've kept (and will continue to keep) GameTracker in a single HTML page. A real app, however, will split the app into a logical file structure. Each Model, View, Collection, and Template would live in its own file, and then later assembled with a javascript loader or asset pipeline.
 
@@ -639,7 +637,7 @@ The third is to move some of the sort logic from the view to the collection itse
         }
       });
 ```
-```
+```diff
       GameTracker.Views.GameTable = Backbone.View.extend({
         tagName: 'table',
         template: _.template("<thead><tr><th data-sort='name'>Name</th><th data-sort='minutes'>Minutes Played</th></tr></thead><tbody></tbody>"),
@@ -750,11 +748,11 @@ Time to add in the Backbone Router:
 ```      
 In much the same way as we used an events hash in our views, we've defined a routes hash to be triggered when we load up our app with extra params in the URL. In this case, we want the router call the `sort` function when we've appended `sort` to the URL. We also expect the column we want to sort by after the sort keyword, indicated by the colon-ed `:sortColummn` in the route definition. We also need to new up and start the router when the page loads.
 
-With all this in place, it is now possible to open the page pre-sorted. If you've opened up the page, locally, the URL will look something like `file:///path_to_where_you_saved_game_tracker/Game%20Tracker/index10addRouter.html`. Add params at the end so it looks like `file:///path_to_where_you_saved_game_tracker/Game%20Tracker/index10addRouter.html#sort/minutes`. It will load the page => startup the router => inspect the params => trigger the vent `sort` event => invoke sortByProperty => trigger the collection `sort` event => invoke the gameTable view's render with the newly sorted collection. Cool. It looks like we're done.
+With all this in place, it is now possible to open the page pre-sorted. You can [click here](http://perspectivezoom.com/from-jquery-to-backbone/index10addRouter.html#sort/name) to see it working online, or if you've opened up the page locally, the URL will look something like `file:///path_to_where_you_saved_game_tracker/Game%20Tracker/index10addRouter.html`. Add params at the end so it looks like `file:///path_to_where_you_saved_game_tracker/Game%20Tracker/index10addRouter.html#sort/minutes`. It will load the page => startup the router => inspect the params => trigger the vent `sort` event => invoke sortByProperty => trigger the collection `sort` event => invoke the gameTable view's render with the newly sorted collection. Cool. It looks like we're done.
 
 [The current version of the page](http://perspectivezoom.com/from-jquery-to-backbone/index10addRouter.html) - [code](https://github.com/perspectivezoom/from-jquery-to-backbone/blob/gh-pages/index10addRouter.html) 
 
-Although in this step-by-step, we used only two inter-component communication strategies, please note that are more ways than just vents and shared resources. For example, Backbone Views that hold nested html, such as GameTable and GameTableRow, have a natural connection to each other, and although we never needed to do so, it would be perfectly reasonable in the near future for GameTable to keep a reference to its GameTableRows if it needs to directly talk to them. Something along the lines of GameTable creating a `this.gameViews` array and changing:
+Although in this step-by-step, we've used only two inter-component communication strategies, please note that are more ways than just vents and shared resources. For example, Backbone Views that hold nested html, such as GameTable and GameTableRow, have a natural connection to each other, and although we never needed to do so, it would be perfectly reasonable in the near future for GameTable to keep a reference to its GameTableRows if it needs to directly talk to them. Something along the lines of GameTable creating a `this.gameViews` array and changing:
 
 ```diff
 -   var gameView = new GameTracker.Views.GameTableRow({ model: game });
