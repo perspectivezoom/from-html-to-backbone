@@ -505,7 +505,7 @@ We first modify our GameTable template slightly, so that when we click each head
       GameTracker.Views.GameTable = Backbone.View.extend({
         tagName: 'table',
 -       template: _.template('<thead><tr><th>Name</th><th>Minutes Played</th></tr></thead><tbody></tbody>'),
- +      template: _.template("<thead><tr><th data-sort='name'>Name</th><th data-sort='minutes'>Minutes Played</th></tr></thead><tbody></tbody>"),
++       template: _.template("<thead><tr><th data-sort='name'>Name</th><th data-sort='minutes'>Minutes Played</th></tr></thead><tbody></tbody>"),
         render: function () {
           this.$el.html(this.template());
           this.collection.each(function (game) {
@@ -648,7 +648,6 @@ The third is to move some of the sort logic from the view to the collection itse
 +         'click th': 'sortCollection'
         },
         initialize: function () {
-          _.bindAll(this, 'render');
           this.collection.on('add', this.render, this);
 +         this.collection.on('sort', this.render, this);
         },
