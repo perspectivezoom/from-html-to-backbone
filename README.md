@@ -12,6 +12,23 @@ If you have a strong programming background, and can understand [jQuery to Backb
 
 In this step by step, parts of Backbone are integrated one at a time and explained in detail. The goal is to eliminate the mysticism behind using Backbone, and for you to understand how everything works. Though not really framework itself (the most appropriate definition I've heard is a "framework framework"), understanding Backbone will give you a much firmer grasp of the more magical frameworks you might encounter.
 
+### Table of Contents
+
+* [Part 1: From static to static](https://github.com/perspectivezoom/from-jquery-to-backbone#part-1-from-static-to-static)
+  * [Step 0: The starting HTML](https://github.com/perspectivezoom/from-jquery-to-backbone#step-0-the-starting-html)
+  * [Step 1: Adding a template](https://github.com/perspectivezoom/from-jquery-to-backbone#step-1-adding-a-template)
+  * [Step 2: Adding a Backbone Model](https://github.com/perspectivezoom/from-jquery-to-backbone#step-2-adding-a-backbone-model)
+  * [Step 3: Adding a Backbone View](https://github.com/perspectivezoom/from-jquery-to-backbone#step-3-adding-a-backbone-view)
+  * [Step 4: Adding a Backbone Collection](https://github.com/perspectivezoom/from-jquery-to-backbone#step-4-adding-a-backbone-collection)
+  * [Step 5: Adding a second view](https://github.com/perspectivezoom/from-jquery-to-backbone#step-5-adding-a-second-view)
+  * [Step 6: Adding a namespace](https://github.com/perspectivezoom/from-jquery-to-backbone#step-6-adding-a-namespace)
+* [Part 2: Adding functionality](https://github.com/perspectivezoom/from-jquery-to-backbone#part-2-adding-functionality)
+  * [Step 7: Adding a model helper](https://github.com/perspectivezoom/from-jquery-to-backbone#step-7-adding-a-model-helper)
+  * [Step 8: Adding Backbone Events](https://github.com/perspectivezoom/from-jquery-to-backbone#step-8-adding-backbone-events)
+  * [Step 9: Adding an add form](https://github.com/perspectivezoom/from-jquery-to-backbone#step-9-adding-an-add-form)
+  * [Step 10: Adding a Backbone Router and vent](https://github.com/perspectivezoom/from-jquery-to-backbone#step-10-adding-a-backbone-router-and-vent)
+* [Final Thoughts](https://github.com/perspectivezoom/from-jquery-to-backbone#final-thoughts)
+
 ## Part 1: From static to static
 
 _in which a basic HTML page remains visibly unchanged, but at the end just so happens to have Backbone doing its thing behind the scenes._
@@ -559,7 +576,7 @@ Note that the only section of our app that we've modified in this step is the Ga
 
 [The current version of the page](http://perspectivezoom.com/from-jquery-to-backbone/index08addEvents.html) - [code](https://github.com/perspectivezoom/from-jquery-to-backbone/blob/gh-pages/index08addEvents.html) 
 
-### Step 9: Adding an Add Form
+### Step 9: Adding an add Form
 
 Compartmentalizing different sections of your app into views sounds all fine and good in theory, but in practice can be frustrating. When you introduce a bit of order into your app, you necessarily sacrifice some flexibility. Before, without compartmentalization, every part of the web page could talk to and manipulate everything else. Now it can't; A Backbone View should only manipulate html exclusively inside its `el`.
 
@@ -673,7 +690,7 @@ What I want to emphasize with these changes is the [separation of concerns](http
 
 [The current version of the page](http://perspectivezoom.com/from-jquery-to-backbone/index09addForm.html) - [code](https://github.com/perspectivezoom/from-jquery-to-backbone/blob/gh-pages/index09addForm.html) 
 
-### Step 10: Adding a Backbone Router and Vent
+### Step 10: Adding a Backbone Router and vent
 
 For our last step, we are going to use the [Backbone Router](http://backbonejs.org/#Router) to inspect our URL and sort our table on loading the page. 
 
