@@ -136,7 +136,7 @@ The data that we just deleted is instead declared as an array of objects.
   </head>
 ```
 
-We create an Underscore template that, when given a game, will generate the HTML for the game's row in the table.
+To use the data, we create an Underscore template. The template takes in a string that contains common HTML for every game row in the table. Game-specific content is bracketed by special tags, in this case `<%=` and `%>`. When we use our template on a specific game, the template will look for the `name` and `minutes` properties in the game and fill them in for us. 
 
 ```diff
     <script>
