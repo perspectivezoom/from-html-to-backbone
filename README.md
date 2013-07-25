@@ -241,11 +241,11 @@ Unlike Backbone Models, we're going to be doing quite a lot with a [Backbone Vie
 
 The first thing to notice is that the Underscore template moved from its own variable to the `template` property of the View. Strictly speaking, this wasn't necessary; our render function could have just as easily been `this.$el.html(gameListing(this.model));` instead of `this.$el.html(this.template(this.model));`, but Backbone Views provide us with the convention of storing the View's template in the template property. More importantly, it makes sense to store it there; the template doesn't really belong floating out in the open.
 
-Which brings us to the render function itself. As mentioned previously, Backbone lets you choose how to render HTML. In the standard Backbone.View, the `render` function is completely blank, forcing you to define it yourself. The sole job of this.render is to populate the View's `el` property, where the View stores its HTML. For reasons of convenience and [convention](http://backbonejs.org/#View-render), we define render to return the view after it has finished populating its el. This will allow us to employ method chaining later on in this step.
+Which brings us to the `render` function itself. As mentioned previously, Backbone lets you choose how to render HTML. In the standard Backbone.View, the `render` function is completely blank, forcing you to define it yourself. The sole job of `render` is to populate the View's `el` property, where the View stores its HTML. For reasons of convenience and [convention](http://backbonejs.org/#View-render), we define `render` to return the view after it has finished populating its `el`. This will allow us to employ method chaining later on in this step.
 
-By default, `el` is just an empty `<div></div>`. We want our View's `el` to be a HTML table row, so we use the tagName property to make its containing `el` a tr instead. Thus, when the View is newed up, before we call its render function, our View's `el` is just `<tr></tr>`. We also remove the `<tr></tr>` tags from the template. 
+By default, `el` is just an empty `<div></div>`. We want our View's `el` to be a HTML table row, so we use the tagName property to make its containing `el` a `tr` instead. Thus, when the View is newed up, before we call its `render` function, our View's `el` is just `<tr></tr>`. We also remove the `<tr></tr>` tags from the template. 
 
-When render is called, we take our model, run it through our template, and stuff the resultant HTML into `el`'s `<tr></tr>`. Helpfully, Backbone gives us `this.$el`, a convenient shorthand for `$(this.el)`.
+When `render` is called, we take our model, run it through our template, and stuff the resultant HTML into `el`'s `<tr></tr>`. Helpfully, Backbone gives us `this.$el`, a convenient shorthand for `$(this.el)`, the jQuery object wrapper that you know and love.
 
 Ok, time to use the view:
 
@@ -259,7 +259,7 @@ Ok, time to use the view:
         });
 ```
 
-Previously, we took our template, fed in our Backbone Game Model, and took that HTMl and appended it to the table. This time, we first new up a Backbone View and feed it our model. Instead of calling the template directly, we indirectly use it through the view's render function, which populates the view's `el`. Finally, taking advantage of the method chaining provided by `gameView.render`'s return value, we take the view's populated `el`, and, as before, append it to the table. 
+Previously, we took our template, fed in our Backbone Game Model, and took that HTML and appended it to the table. This time, we first new up a Backbone View and feed it our model. Instead of calling the template directly, we indirectly use it through the view's `render` function, which populates the view's `el`. Finally, taking advantage of the method chaining provided by `gameView.render`'s return value, we take the view's populated `el`, and, as before, append it to the table. 
 
 [The current version of the page](http://perspectivezoom.com/from-jquery-to-backbone/index03addView.html) - [code](https://github.com/perspectivezoom/from-jquery-to-backbone/blob/gh-pages/index03addView.html) 
 
