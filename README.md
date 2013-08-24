@@ -302,7 +302,7 @@ We first new up an empty collection, then add in our games. Then, iterating over
 
 Now, before we move on, I'd like to draw attention to two small pieces of Backbone magic that we've used.
 
-The first piece of magic occurred when passing a model in as an option to the view: `new GameView({ model: game })`. If including a model upon newing, Backbone will automatically put the model into the view's `this.model`. This is not true of all keys in an object; `new GameView({ foo: "bar" })` will populate the `this.options.foo` propery, not `this.foo`. See the [Backbone docs](http://backbonejs.org/#View-constructor) to see which keywords receive special treatment.
+The first piece of magic occurred when passing a model in as an option to the view: `new GameView({ model: game })`. If including a model upon newing, Backbone will automatically put the model into the view's `this.model`. This is not true of all keys in an object; `new GameView({ foo: "bar" })` will populate the `this.options.foo` property, not `this.foo`. See the [Backbone docs](http://backbonejs.org/#View-constructor) to see which keywords receive special treatment.
 
 The second piece of magic is adding models to the collection. You'll notice that when we add data to the collection with `gameCollection.add(games)`, the games variable is an array of regular javascript objects. As it turns out, according to the [docs](http://backbonejs.org/#Collection-model):
 > if [a Collection's `model` property] is defined, you can pass raw attributes objects (and arrays) to add, create, and reset, and the attributes will be converted into a model of the proper type.
@@ -313,9 +313,9 @@ So that's nice. We don't have to create a model only to stuff it into a collecti
 
 ### Step 5: Adding a second view
 
-Though we've added in three of the core Backbone components, it isn't quite yet up to convention. There's still two steps to be done before we can consider call this page canonical. 
+Though we've added in three of the core Backbone components, it isn't quite yet up to convention. There's still 2 refactors to perform, which will cover Step 5 and Step 6.
 
-The first is to add in a second view. We have a view for each table row, but we don't yet have one for the table itself. Although it is not strictly necessary at the moment, we'll see in Step 9 just how useful having a "Collection View" (to borrow a term from the [Backbone-Marionette](https://github.com/marionettejs/backbone.marionette) framework) can be.
+The first refactor is to add in a second view. We have a view for each table row, but we don't yet have one for the table itself. Although it is not strictly necessary at the moment, we'll see in Step 9 just how useful having a "Collection View" (to borrow a term from the [Backbone-Marionette](https://github.com/marionettejs/backbone.marionette) framework) can be.
 
 In preparation for this second view, we rename the existing GameView to be a little bit more descriptive:
 
@@ -514,7 +514,7 @@ Finally, there's the case where we would need to use formattedMinutes for other 
 
 ### Step 8: Adding Backbone Events
 
-Time to add in our first interaction to the app. What we'll do is make our games sortable. By clicking on the Name or Minutes Played table header, we want to sort our list either alphabetically or by the time each game's been played.
+Time to add in our first interaction to the app. Let's make our games sortable: By clicking on the Name or Minutes Played table header, sort our list of games either alphabetically or by the time each game's been played.
 
 We first modify our GameTable template slightly, so that when we click each header, we'll have more formalized information to work with:
 
@@ -703,7 +703,7 @@ In the previous step, we used a common Backbone Collection as a bridge to commun
       // MODELS
       GameTracker.Models.Game = Backbone.Model.extend({
 ```
-Yep, it's just one line of code. All we need is a named bare bones Backbone Events object to receive and pass on messages.
+Yep, it's just one line of code. All we need is a bare Backbone Events object to receive and pass on messages.
 
 To use the vent, we'll tell our collection to listen for a `sortByProperty` event:
 
@@ -721,7 +721,7 @@ To use the vent, we'll tell our collection to listen for a `sortByProperty` even
 ```
 Once again, we're passing in `this` as the third argument so that we maintain context. We want the `this` in the line `this.comparator = function …` to refer to the collection, not the vent.
 
-Now that our collection is listening to the vent, its possible to sort the collection from anywhere within, or even outside the app, as long as it has access to `GameTracker.vent`. For exampe, after loading the page, you can call `GameTracker.vent.trigger('sort', 'minutes');` in the console to invoke a sort.
+Now that our collection is listening to the vent, its possible to sort the collection from anywhere within, or even outside the app, as long as it has access to `GameTracker.vent`. For example, after loading the page, you can call `GameTracker.vent.trigger('sort', 'minutes');` in the console to invoke a sort.
 
 Time to add in the Backbone Router:
 
@@ -766,7 +766,7 @@ Time to add in the Backbone Router:
 ```      
 In much the same way as we used an events hash in our views, we've defined a routes hash to be triggered when we load up our app with extra params in the URL. In this case, we want the router call the `sort` function when we've appended `sort` to the URL. We also expect the column we want to sort by after the sort keyword, indicated by the colon-ed `:sortColummn` in the route definition. We also need to new up and start the router when the page loads.
 
-With all this in place, it is now possible to open the page pre-sorted. You can [click here](http://perspectivezoom.com/from-jquery-to-backbone/index10addRouter.html#sort/name) to see it working online, or if you've opened up the page locally, the URL will look something like `file:///path_to_where_you_saved_game_tracker/Game%20Tracker/index10addRouter.html`. Add params at the end so it looks like `file:///path_to_where_you_saved_game_tracker/Game%20Tracker/index10addRouter.html#sort/minutes`. It will load the page => startup the router => inspect the params => trigger the vent `sort` event => invoke sortByProperty => trigger the collection `sort` event => invoke the gameTable view's render with the newly sorted collection. Cool. It looks like we're done.
+With all this in place, it is now possible to open the page pre-sorted. You can [click here](http://perspectivezoom.com/from-jquery-to-backbone/index10addRouter.html#sort/name) to see it working online, or if you've opened up the page locally, the URL will look something like `file:///path_to_where_you_saved_game_tracker/Game%20Tracker/index10addRouter.html`. Add params at the end so it looks like `file:///path_to_where_you_saved_game_tracker/Game%20Tracker/index10addRouter.html#sort/minutes`. It will load the page => startup the router => inspect the params => trigger the vent `sort` event => invoke sortByProperty => trigger the collection `sort` event => invoke the gameTable view's render with the newly sorted collection.
 
 [The current version of the page](http://perspectivezoom.com/from-jquery-to-backbone/index10addRouter.html) - [code](https://github.com/perspectivezoom/from-jquery-to-backbone/blob/gh-pages/index10addRouter.html) 
 
