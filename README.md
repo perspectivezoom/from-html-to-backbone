@@ -14,20 +14,20 @@ In this step by step, parts of Backbone are integrated one at a time and explain
 
 ### Table of Contents
 
-* [Part 1: From static to static](https://github.com/perspectivezoom/from-jquery-to-backbone#part-1-from-static-to-static)
-  * [Step 0: The starting HTML](https://github.com/perspectivezoom/from-jquery-to-backbone#step-0-the-starting-html)
-  * [Step 1: Adding a template](https://github.com/perspectivezoom/from-jquery-to-backbone#step-1-adding-a-template)
-  * [Step 2: Adding a Backbone Model](https://github.com/perspectivezoom/from-jquery-to-backbone#step-2-adding-a-backbone-model)
-  * [Step 3: Adding a Backbone View](https://github.com/perspectivezoom/from-jquery-to-backbone#step-3-adding-a-backbone-view)
-  * [Step 4: Adding a Backbone Collection](https://github.com/perspectivezoom/from-jquery-to-backbone#step-4-adding-a-backbone-collection)
-  * [Step 5: Adding a second view](https://github.com/perspectivezoom/from-jquery-to-backbone#step-5-adding-a-second-view)
-  * [Step 6: Adding a namespace](https://github.com/perspectivezoom/from-jquery-to-backbone#step-6-adding-a-namespace)
-* [Part 2: Adding functionality](https://github.com/perspectivezoom/from-jquery-to-backbone#part-2-adding-functionality)
-  * [Step 7: Adding a model helper](https://github.com/perspectivezoom/from-jquery-to-backbone#step-7-adding-a-model-helper)
-  * [Step 8: Adding Backbone Events](https://github.com/perspectivezoom/from-jquery-to-backbone#step-8-adding-backbone-events)
-  * [Step 9: Adding an add form](https://github.com/perspectivezoom/from-jquery-to-backbone#step-9-adding-an-add-form)
-  * [Step 10: Adding a Backbone Router and vent](https://github.com/perspectivezoom/from-jquery-to-backbone#step-10-adding-a-backbone-router-and-vent)
-* [Final Thoughts](https://github.com/perspectivezoom/from-jquery-to-backbone#final-thoughts)
+* [Part 1: From static to static](https://github.com/perspectivezoom/from-html-to-backbone#part-1-from-static-to-static)
+  * [Step 0: The starting HTML](https://github.com/perspectivezoom/from-html-to-backbone#step-0-the-starting-html)
+  * [Step 1: Adding a template](https://github.com/perspectivezoom/from-html-to-backbone#step-1-adding-a-template)
+  * [Step 2: Adding a Backbone Model](https://github.com/perspectivezoom/from-html-to-backbone#step-2-adding-a-backbone-model)
+  * [Step 3: Adding a Backbone View](https://github.com/perspectivezoom/from-html-to-backbone#step-3-adding-a-backbone-view)
+  * [Step 4: Adding a Backbone Collection](https://github.com/perspectivezoom/from-html-to-backbone#step-4-adding-a-backbone-collection)
+  * [Step 5: Adding a second view](https://github.com/perspectivezoom/from-html-to-backbone#step-5-adding-a-second-view)
+  * [Step 6: Adding a namespace](https://github.com/perspectivezoom/from-html-to-backbone#step-6-adding-a-namespace)
+* [Part 2: Adding functionality](https://github.com/perspectivezoom/from-html-to-backbone#part-2-adding-functionality)
+  * [Step 7: Adding a model helper](https://github.com/perspectivezoom/from-html-to-backbone#step-7-adding-a-model-helper)
+  * [Step 8: Adding Backbone Events](https://github.com/perspectivezoom/from-html-to-backbone#step-8-adding-backbone-events)
+  * [Step 9: Adding an add form](https://github.com/perspectivezoom/from-html-to-backbone#step-9-adding-an-add-form)
+  * [Step 10: Adding a Backbone Router and vent](https://github.com/perspectivezoom/from-html-to-backbone#step-10-adding-a-backbone-router-and-vent)
+* [Final Thoughts](https://github.com/perspectivezoom/from-html-to-backbone#final-thoughts)
 
 ## Part 1: From static to static
 
@@ -71,7 +71,7 @@ We'll be backbone-ifying a simple website named Game Tracker. It consists of a t
 </html>
 ```
 
-You can view the page [here](http://perspectivezoom.com/from-jquery-to-backbone/index00mockup.html) - [code](https://github.com/perspectivezoom/from-jquery-to-backbone/blob/gh-pages/index00mockup.html) 
+You can view the page [here](http://perspectivezoom.com/from-html-to-backbone/index00mockup.html) - [code](https://github.com/perspectivezoom/from-html-to-backbone/blob/gh-pages/index00mockup.html) 
 
 ### Step 1: Adding a template
 
@@ -170,7 +170,7 @@ Finally (after jQuery's `(document).ready` tells us that the page has fully load
 
 Ok, this step is done. If you load it in a browser, you'll see nothing different, but we know that different stuff is happening in the background.
 
-[The current version of the page](http://perspectivezoom.com/from-jquery-to-backbone/index01addTemplate.html) - [code](https://github.com/perspectivezoom/from-jquery-to-backbone/blob/gh-pages/index01addTemplate.html) 
+[The current version of the page](http://perspectivezoom.com/from-html-to-backbone/index01addTemplate.html) - [code](https://github.com/perspectivezoom/from-html-to-backbone/blob/gh-pages/index01addTemplate.html) 
 
 ### Step 2: Adding a Backbone Model
 
@@ -218,7 +218,7 @@ To use our model, instead of taking each game object and passing it to the templ
 
 Ok, we've added a Backbone Model. It seems a bit unnecessary, because it doesn't really do much at the moment. Truth be told, even at the end of this step-by-step, the model still won't do much, but hopefully, after Step 7, you'll see how it *could* be useful in a bigger app.
 
-[The current version of the page](http://perspectivezoom.com/from-jquery-to-backbone/index02addModel.html) - [code](https://github.com/perspectivezoom/from-jquery-to-backbone/blob/gh-pages/index02addModel.html) 
+[The current version of the page](http://perspectivezoom.com/from-html-to-backbone/index02addModel.html) - [code](https://github.com/perspectivezoom/from-html-to-backbone/blob/gh-pages/index02addModel.html) 
 
 ### Step 3: Adding a Backbone View
 
@@ -261,7 +261,7 @@ Ok, time to use the view:
 
 Previously, we took our template, fed in our Backbone Game Model, and took that HTML and appended it to the table. This time, we first new up a Backbone View and feed it our model. Instead of calling the template directly, we indirectly use it through the view's `render` function, which populates the view's `el`. Finally, taking advantage of the method chaining provided by `gameView.render`'s return value, we take the view's populated `el`, and, as before, append it to the table. 
 
-[The current version of the page](http://perspectivezoom.com/from-jquery-to-backbone/index03addView.html) - [code](https://github.com/perspectivezoom/from-jquery-to-backbone/blob/gh-pages/index03addView.html) 
+[The current version of the page](http://perspectivezoom.com/from-html-to-backbone/index03addView.html) - [code](https://github.com/perspectivezoom/from-html-to-backbone/blob/gh-pages/index03addView.html) 
 
 Once again, nothing visibly different at the moment, but we'll take full advantage of Backbone Views in the second half. To give you a little food for thought: we've effectively assigned ownership of portions of HTML. Each table row is its own newed up Backbone View, and that view is responsible for the elements inside of it. That single concept, of sections of HTML being owned by a responsible object, is among the most powerful new insights that have emerged from Backbone and similar libraries.
 
@@ -309,7 +309,7 @@ The second piece of magic is adding models to the collection. You'll notice that
 
 So that's nice. We don't have to create a model only to stuff it into a collection. As long as we tell the collection what to expect, Backbone takes care of that for us.
 
-[The current version of the page](http://perspectivezoom.com/from-jquery-to-backbone/index04addCollection.html) - [code](https://github.com/perspectivezoom/from-jquery-to-backbone/blob/gh-pages/index04addCollection.html) 
+[The current version of the page](http://perspectivezoom.com/from-html-to-backbone/index04addCollection.html) - [code](https://github.com/perspectivezoom/from-html-to-backbone/blob/gh-pages/index04addCollection.html) 
 
 ### Step 5: Adding a second view
 
@@ -399,7 +399,7 @@ We remove code that is now covered by GameTableView's `render`. Instead, we simp
 
 All our table building functionality is now localized into a place where it makes sense to be. To anthropomorphize, at the very top level, all we say is "I want a Game table here. I don't particularly care how you do it, just as long as it contains this collection of games". The GameTableView encapsulates how exactly that happens.
 
-[The current version of the page](http://perspectivezoom.com/from-jquery-to-backbone/index05addCollectionView.html) - [code](https://github.com/perspectivezoom/from-jquery-to-backbone/blob/gh-pages/index05addCollectionView.html) 
+[The current version of the page](http://perspectivezoom.com/from-html-to-backbone/index05addCollectionView.html) - [code](https://github.com/perspectivezoom/from-html-to-backbone/blob/gh-pages/index05addCollectionView.html) 
 
 ### Step 6: Adding a Namespace
 
@@ -469,7 +469,7 @@ In addition, it is customary to not pollute the global namespace with many varia
 
 Now, the only variable we've added (before runtime) is the GameTracker object, which holds all of our Model, View, and Collection definitions. We've also imposed some organization, with each Backbone piece getting its own section.
 
-[The current version of the page](http://perspectivezoom.com/from-jquery-to-backbone/index06addNamespace.html) - [code](https://github.com/perspectivezoom/from-jquery-to-backbone/blob/gh-pages/index06addNamespace.html) 
+[The current version of the page](http://perspectivezoom.com/from-html-to-backbone/index06addNamespace.html) - [code](https://github.com/perspectivezoom/from-html-to-backbone/blob/gh-pages/index06addNamespace.html) 
 
 ## Part 2: Adding functionality
 
@@ -510,7 +510,7 @@ Our current implementation would make sense if we used formattedMinutes in two d
 
 Finally, there's the case where we would need to use formattedMinutes for other models. Perhaps GameTracker becomes a more generic TimeTracker and we need formattedMinutes for a Car Backbone model. At that point, we can globalize the helper in one of two and a half ways. We could create a common Backbone Model or a common Backbone View with formattedMinutes in it, and then have all models/views extend the common view. Alternately, we could place formattedMinutes in its own independent helper section, such as GameTracker.Helpers.formattedMinutes.
 
-[The current version of the page](http://perspectivezoom.com/from-jquery-to-backbone/index07addModelHelper.html) - [code](https://github.com/perspectivezoom/from-jquery-to-backbone/blob/gh-pages/index07addModelHelper.html) 
+[The current version of the page](http://perspectivezoom.com/from-html-to-backbone/index07addModelHelper.html) - [code](https://github.com/perspectivezoom/from-html-to-backbone/blob/gh-pages/index07addModelHelper.html) 
 
 ### Step 8: Adding Backbone Events
 
@@ -574,7 +574,7 @@ That's it for this step. Loading the web page will now give you clickable header
 
 Note that the only section of our app that we've modified in this step is the GameTable view. Thanks to the way we've compartmentalized our app into different sections, it's relatively easy to find and modify functionality without accidentally disturbing other sections of the app.
 
-[The current version of the page](http://perspectivezoom.com/from-jquery-to-backbone/index08addEvents.html) - [code](https://github.com/perspectivezoom/from-jquery-to-backbone/blob/gh-pages/index08addEvents.html) 
+[The current version of the page](http://perspectivezoom.com/from-html-to-backbone/index08addEvents.html) - [code](https://github.com/perspectivezoom/from-html-to-backbone/blob/gh-pages/index08addEvents.html) 
 
 ### Step 9: Adding an add Form
 
@@ -688,7 +688,7 @@ The third is to move some of the sort logic from the view to the collection itse
 ```
 What I want to emphasize with these changes is the [separation of concerns](http://en.wikipedia.org/wiki/Separation_of_concerns) here: By clicking a column header, you are not sorting a table, nor the view. Instead, you are telling the view's internal collection how to sort. Then, after the collection has re-sorted itself, it lets you know that it's done. The act of telling the collection to sort, the collection actually sorting, and the act of the collection telling you to re-render are separate and distinct steps, and belong in different parts of the app. This refactor will also be highly useful for use in our final step.
 
-[The current version of the page](http://perspectivezoom.com/from-jquery-to-backbone/index09addForm.html) - [code](https://github.com/perspectivezoom/from-jquery-to-backbone/blob/gh-pages/index09addForm.html) 
+[The current version of the page](http://perspectivezoom.com/from-html-to-backbone/index09addForm.html) - [code](https://github.com/perspectivezoom/from-html-to-backbone/blob/gh-pages/index09addForm.html) 
 
 ### Step 10: Adding a Backbone Router and vent
 
@@ -766,9 +766,9 @@ Time to add in the Backbone Router:
 ```      
 In much the same way as we used an events hash in our views, we've defined a routes hash to be triggered when we load up our app with extra params in the URL. In this case, we want the router call the `sort` function when we've appended `sort` to the URL. We also expect the column we want to sort by after the sort keyword, indicated by the colon-ed `:sortColummn` in the route definition. We also need to new up and start the router when the page loads.
 
-With all this in place, it is now possible to open the page pre-sorted. You can [click here](http://perspectivezoom.com/from-jquery-to-backbone/index10addRouter.html#sort/name) to see it working online, or if you've opened up the page locally, the URL will look something like `file:///path_to_where_you_saved_game_tracker/Game%20Tracker/index10addRouter.html`. Add params at the end so it looks like `file:///path_to_where_you_saved_game_tracker/Game%20Tracker/index10addRouter.html#sort/minutes`. It will load the page => startup the router => inspect the params => trigger the vent `sort` event => invoke sortByProperty => trigger the collection `sort` event => invoke the gameTable view's render with the newly sorted collection.
+With all this in place, it is now possible to open the page pre-sorted. You can [click here](http://perspectivezoom.com/from-html-to-backbone/index10addRouter.html#sort/name) to see it working online, or if you've opened up the page locally, the URL will look something like `file:///path_to_where_you_saved_game_tracker/Game%20Tracker/index10addRouter.html`. Add params at the end so it looks like `file:///path_to_where_you_saved_game_tracker/Game%20Tracker/index10addRouter.html#sort/minutes`. It will load the page => startup the router => inspect the params => trigger the vent `sort` event => invoke sortByProperty => trigger the collection `sort` event => invoke the gameTable view's render with the newly sorted collection.
 
-[The current version of the page](http://perspectivezoom.com/from-jquery-to-backbone/index10addRouter.html) - [code](https://github.com/perspectivezoom/from-jquery-to-backbone/blob/gh-pages/index10addRouter.html) 
+[The current version of the page](http://perspectivezoom.com/from-html-to-backbone/index10addRouter.html) - [code](https://github.com/perspectivezoom/from-html-to-backbone/blob/gh-pages/index10addRouter.html) 
 
 Although in this step-by-step, we've used only two inter-component communication strategies, please note that are more ways than just vents and shared resources. For example, Backbone Views that hold nested html, such as GameTable and GameTableRow, have a natural connection to each other, and although we never needed to do so, it would be perfectly reasonable in the near future for GameTable to keep a reference to its GameTableRows if it needs to directly talk to them. Something along the lines of GameTable creating a `this.gameViews` array and changing:
 
