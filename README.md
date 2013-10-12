@@ -302,7 +302,7 @@ We first new up an empty collection, then add in our games. Then, iterating over
 
 Now, before we move on, I'd like to draw attention to two small pieces of Backbone magic that we've used.
 
-The first piece of magic occurred when passing a model in as an option to the view: `new GameView({ model: game })`. If including a model upon newing, Backbone will automatically put the model into the view's `this.model`. This is not true of all keys in an object; `new GameView({ foo: "bar" })` will populate the `this.options.foo` property, not `this.foo`. See the [Backbone docs](http://backbonejs.org/#View-constructor) to see which keywords receive special treatment.
+The first piece of magic occurred when passing a model in as an option to the view: `new GameView({ model: game })`. If including a model upon newing, Backbone will automatically put the model into the view's `this.model`. This is not true of all keys in an object; `new GameView({ foo: "bar" })` will not populate `this.foo` automatically; you will need to manually populate it within an `initialize` function. See the [Backbone docs](http://backbonejs.org/#View-constructor) to see which keywords receive special treatment.
 
 The second piece of magic is adding models to the collection. You'll notice that when we add data to the collection with `gameCollection.add(games)`, the games variable is an array of regular javascript objects. As it turns out, according to the [docs](http://backbonejs.org/#Collection-model):
 > if [a Collection's `model` property] is defined, you can pass raw attributes objects (and arrays) to add, create, and reset, and the attributes will be converted into a model of the proper type.
